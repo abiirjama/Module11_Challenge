@@ -1,0 +1,57 @@
+@page
+@model DreamRecipeSite.Pages.RecipesModel
+@{
+    ViewData["Title"] = "Add Recipe";
+}
+
+<h1>Add a New Recipe</h1>
+
+<!-- Display success message -->
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+<!-- Display all validation errors -->
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form method="post">
+
+    <div class="mb-3">
+        <label asp-for="Recipe.Name" class="form-label"></label>
+        <input asp-for="Recipe.Name" class="form-control" />
+        <span asp-validation-for="Recipe.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Recipe.MainIngredient" class="form-label"></label>
+        <input asp-for="Recipe.MainIngredient" class="form-control" />
+        <span asp-validation-for="Recipe.MainIngredient" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Recipe.Instructions" class="form-label"></label>
+        <textarea asp-for="Recipe.Instructions" class="form-control"></textarea>
+        <span asp-validation-for="Recipe.Instructions" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Recipe.Servings" class="form-label"></label>
+        <input asp-for="Recipe.Servings" class="form-control" />
+        <span asp-validation-for="Recipe.Servings" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Recipe.CookTimeMinutes" class="form-label"></label>
+        <input asp-for="Recipe.CookTimeMinutes" class="form-control" />
+        <span asp-validation-for="Recipe.CookTimeMinutes" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Recipe</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
