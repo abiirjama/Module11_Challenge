@@ -4,9 +4,9 @@
     ViewData["Title"] = "Add Recipe";
 }
 
-<h1>Add a New Recipe</h1>
+<h1 class="mb-3">Add a New Recipe</h1>
 
-<!-- Display success message -->
+<!-- Success message after form submission -->
 @if (TempData["Message"] != null)
 {
     <div class="alert alert-success">
@@ -14,44 +14,96 @@
     </div>
 }
 
-<!-- Display all validation errors -->
-<div asp-validation-summary="All" class="text-danger"></div>
+<!-- Show all validation errors at the top -->
+<div asp-validation-summary="All" class="text-danger mb-3"></div>
 
-<form method="post">
+<div class="recipe-card">
+    <h2 class="form-title">Recipe Details</h2>
 
-    <div class="mb-3">
-        <label asp-for="Recipe.Name" class="form-label"></label>
-        <input asp-for="Recipe.Name" class="form-control" />
-        <span asp-validation-for="Recipe.Name" class="text-danger"></span>
-    </div>
+    <form method="post">
 
-    <div class="mb-3">
-        <label asp-for="Recipe.MainIngredient" class="form-label"></label>
-        <input asp-for="Recipe.MainIngredient" class="form-control" />
-        <span asp-validation-for="Recipe.MainIngredient" class="text-danger"></span>
-    </div>
+        <!-- Recipe Name -->
+        <div class="form-group mb-3">
+            <label asp-for="Recipe.Name" class="form-label"></label>
+            <input asp-for="Recipe.Name" class="form-control" />
+            <span asp-validation-for="Recipe.Name" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Recipe.Instructions" class="form-label"></label>
-        <textarea asp-for="Recipe.Instructions" class="form-control"></textarea>
-        <span asp-validation-for="Recipe.Instructions" class="text-danger"></span>
-    </div>
+        <!-- Main Ingredient -->
+        <div class="form-group mb-3">
+            <label asp-for="Recipe.MainIngredient" class="form-label"></label>
+            <input asp-for="Recipe.MainIngredient" class="form-control" />
+            <span asp-validation-for="Recipe.MainIngredient" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Recipe.Servings" class="form-label"></label>
-        <input asp-for="Recipe.Servings" class="form-control" />
-        <span asp-validation-for="Recipe.Servings" class="text-danger"></span>
-    </div>
+        <!-- Instructions -->
+        <div class="form-group mb-3">
+            <label asp-for="Recipe.Instructions" class="form-label"></label>
+            <textarea asp-for="Recipe.Instructions" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Recipe.Instructions" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Recipe.CookTimeMinutes" class="form-label"></label>
-        <input asp-for="Recipe.CookTimeMinutes" class="form-control" />
-        <span asp-validation-for="Recipe.CookTimeMinutes" class="text-danger"></span>
-    </div>
+        <!-- Servings -->
+        <div class="form-group mb-3">
+            <label asp-for="Recipe.Servings" class="form-label"></label>
+            <input asp-for="Recipe.Servings" class="form-control" />
+            <span asp-validation-for="Recipe.Servings" class="text-danger"></span>
+        </div>
 
-    <button type="submit" class="btn btn-success">Save Recipe</button>
-</form>
+        <!-- Cook Time -->
+        <div class="form-group mb-3">
+            <label asp-for="Recipe.CookTimeMinutes" class="form-label"></label>
+            <input asp-for="Recipe.CookTimeMinutes" class="form-control" />
+            <span asp-validation-for="Recipe.CookTimeMinutes" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100 mt-2">Save Recipe</button>
+    </form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+<style>
+    .recipe-card {
+        width: 100%;
+        max-width: 550px;
+        margin: 25px auto;
+        padding: 25px;
+        border-radius: 15px;
+        background: #ffffff;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .form-title {
+        text-align: center;
+        margin-bottom: 15px;
+        font-weight: 600;
+        color: #444;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        padding: 10px;
+        border: 1.5px solid #ccc;
+        transition: 0.2s;
+    }
+
+    .form-control:focus {
+        border-color: #ff7ab6;
+        box-shadow: 0 0 6px rgba(255, 122, 182, 0.3);
+    }
+
+    .btn-success {
+        background-color: #ff7ab6;
+        border: none;
+        padding: 10px;
+        font-size: 1rem;
+        transition: 0.3s;
+        border-radius: 10px;
+    }
+
+    .btn-success:hover {
+        background-color: #ff5fa5;
+    }
+</style>
